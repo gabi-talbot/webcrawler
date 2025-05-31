@@ -49,6 +49,13 @@ public final class WebCrawlerMain {
       stdWriter.close();
     }
     // TODO: Write the profile data to a text file (or System.out if the file name is empty)
+    if (!config.getProfileOutputPath().isEmpty()) {
+      profiler.writeData(Path.of(config.getProfileOutputPath()));
+    } else {
+      Writer outputWriter = new OutputStreamWriter(System.out);
+      profiler.writeData(outputWriter);
+      outputWriter.close();
+    }
   }
 
   public static void main(String[] args) throws Exception {
